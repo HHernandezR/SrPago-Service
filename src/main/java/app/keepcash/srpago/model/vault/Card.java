@@ -1,93 +1,47 @@
-package app.keepcash.srpago.model.card;
+package app.keepcash.srpago.model.vault;
 
 import java.io.Serializable;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+public class Card implements Serializable {
 
-public class AddCardRequest implements Serializable {
-
-	private static final long serialVersionUID = -3434707315820733027L;
-
-	@NotNull(message = "El campo idUser es requerido")
-	@Size(min = 1, message = "El campo idUser es requerido")
+	private static final long serialVersionUID = 652408641220982927L;
+	
+	private String idCard;
 	private String idUser;
-
-	@NotNull(message = "El campo pan es requerido")
-	@Size(min = 1, message = "El campo pan es requerido")
 	private String pan;
-
-	@NotNull(message = "El campo expiredDateMonth es requerido")
-	@Size(min = 1, message = "El campo expiredDateMonth es requerido")
 	private String expiredDateMonth;
-
-	@NotNull(message = "El campo expiredDateYear es requerido")
-	@Size(min = 1, message = "El campo expiredDateYear es requerido")
 	private String expiredDateYear;
-
-	@NotNull(message = "El campo type es requerido")
-	private CardTypeEnum type;
-
-	@NotNull(message = "El campo tokenProcessor es requerido")
-	@Size(min = 1, message = "El campo tokenProcessor es requerido")
+	private String type;
 	private String tokenProcessor;
-
-	@NotNull(message = "El campo name es requerido")
-	@Size(min = 1, message = "El campo name es requerido")
 	private String name;
-
-	@NotNull(message = "El campo alias es requerido")
-	@Size(min = 1, message = "El campo alias es requerido")
 	private String alias;
-
-	@NotNull(message = "El campo cutOffDay es requerido")
-	@Size(min = 1, message = "El campo cutOffDay es requerido")
 	private String cutOffDay;
-
-	@NotNull(message = "El campo latitud es requerido")
-	@Size(min = 1, message = "El campo latitud es requerido")
+	private String status;
 	private String latitud;
-
-	@NotNull(message = "El campo longitud es requerido")
-	@Size(min = 1, message = "El campo longitud es requerido")
 	private String longitud;
-
-	@NotNull(message = "El campo pais es requerido")
-	@Size(min = 1, message = "El campo pais es requerido")
+	private String createdOn;
+	private String modifyOn;
+	private String color;
 	private String pais;
-
-	@NotNull(message = "El campo estado es requerido")
-	@Size(min = 1, message = "El campo estado es requerido")
 	private String estado;
-
-	@NotNull(message = "El campo ciudad es requerido")
-	@Size(min = 1, message = "El campo ciudad es requerido")
 	private String ciudad;
-
-	@NotNull(message = "El campo colonia es requerido")
-	@Size(min = 1, message = "El campo colonia es requerido")
 	private String colonia;
-
-	@NotNull(message = "El campo calle es requerido")
-	@Size(min = 1, message = "El campo calle es requerido")
 	private String calle;
-
-	@NotNull(message = "El campo no_exterior es requerido")
-	@Size(min = 1, message = "El campo no_exterior es requerido")
 	private String noExterior;
-
 	private String noInterior;
-
-	@NotNull(message = "El campo cp es requerido")
-	@Size(min = 1, message = "El campo cp es requerido")
 	private String cp;
-
-	@NotNull(message = "El campo alcaldia es requerido")
-	@Size(min = 1, message = "El campo alcaldia es requerido")
 	private String alcaldia;
 
-	public AddCardRequest() {
+	public Card() {
 		super();
+	}
+
+	public String getIdCard() {
+		return idCard;
+	}
+
+	public void setIdCard(String idCard) {
+		this.idCard = idCard;
 	}
 
 	public String getIdUser() {
@@ -122,11 +76,11 @@ public class AddCardRequest implements Serializable {
 		this.expiredDateYear = expiredDateYear;
 	}
 
-	public CardTypeEnum getType() {
+	public String getType() {
 		return type;
 	}
 
-	public void setType(CardTypeEnum type) {
+	public void setType(String type) {
 		this.type = type;
 	}
 
@@ -162,6 +116,14 @@ public class AddCardRequest implements Serializable {
 		this.cutOffDay = cutOffDay;
 	}
 
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 	public String getLatitud() {
 		return latitud;
 	}
@@ -176,6 +138,30 @@ public class AddCardRequest implements Serializable {
 
 	public void setLongitud(String longitud) {
 		this.longitud = longitud;
+	}
+
+	public String getCreatedOn() {
+		return createdOn;
+	}
+
+	public void setCreatedOn(String createdOn) {
+		this.createdOn = createdOn;
+	}
+
+	public String getModifyOn() {
+		return modifyOn;
+	}
+
+	public void setModifyOn(String modifyOn) {
+		this.modifyOn = modifyOn;
+	}
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
 	}
 
 	public String getPais() {
@@ -252,11 +238,12 @@ public class AddCardRequest implements Serializable {
 
 	@Override
 	public String toString() {
-		return "AddCardRequest [idUser=" + idUser + ", pan=" + pan + ", expiredDateMonth=" + expiredDateMonth
-				+ ", expiredDateYear=" + expiredDateYear + ", type=" + type + ", tokenProcessor=" + tokenProcessor
-				+ ", name=" + name + ", alias=" + alias + ", cutOffDay=" + cutOffDay + ", latitud=" + latitud
-				+ ", longitud=" + longitud + ", pais=" + pais + ", estado=" + estado + ", ciudad=" + ciudad
-				+ ", colonia=" + colonia + ", calle=" + calle + ", noExterior=" + noExterior + ", noInterior="
+		return "Card [idCard=" + idCard + ", idUser=" + idUser + ", pan=" + pan + ", expiredDateMonth="
+				+ expiredDateMonth + ", expiredDateYear=" + expiredDateYear + ", type=" + type + ", tokenProcessor="
+				+ tokenProcessor + ", name=" + name + ", alias=" + alias + ", cutOffDay=" + cutOffDay + ", status="
+				+ status + ", latitud=" + latitud + ", longitud=" + longitud + ", createdOn=" + createdOn
+				+ ", modifyOn=" + modifyOn + ", color=" + color + ", pais=" + pais + ", estado=" + estado + ", ciudad="
+				+ ciudad + ", colonia=" + colonia + ", calle=" + calle + ", noExterior=" + noExterior + ", noInterior="
 				+ noInterior + ", cp=" + cp + ", alcaldia=" + alcaldia + "]";
 	}
 

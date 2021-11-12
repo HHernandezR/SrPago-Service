@@ -7,7 +7,7 @@ import javax.validation.constraints.Size;
 
 import org.json.JSONObject;
 
-public class CustomerRequest implements Serializable {
+public class CustomerCreateRequest implements Serializable {
 
 	private static final long serialVersionUID = 570176494527395921L;
 
@@ -25,7 +25,7 @@ public class CustomerRequest implements Serializable {
 
 	private JSONObject metadata;
 
-	public CustomerRequest() {
+	public CustomerCreateRequest() {
 		super();
 	}
 
@@ -61,7 +61,7 @@ public class CustomerRequest implements Serializable {
 		this.metadata = metadata;
 	}
 
-	public CustomerRequest(
+	public CustomerCreateRequest(
 			@NotNull(message = "Campo name es requerido") @Size(min = 1, message = "Campo name es requerido") String name,
 			@NotNull(message = "Campo email es requerido") @Size(min = 1, message = "Campo email es requerido") String email,
 			@NotNull(message = "Campo userId es requerido") @Size(min = 1, message = "Campo idUser es requerido") String idUser,

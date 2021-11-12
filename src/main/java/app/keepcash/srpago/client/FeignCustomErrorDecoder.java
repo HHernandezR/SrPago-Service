@@ -33,6 +33,7 @@ public class FeignCustomErrorDecoder implements ErrorDecoder {
 			message = exceptionMessage.getMessage();
 		} catch (IOException e) {
 			e.printStackTrace();
+			message = "Provider Service Exception";
 		} finally {
 			try {
 				if (reader != null)

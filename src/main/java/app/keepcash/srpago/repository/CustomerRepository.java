@@ -12,7 +12,7 @@ import app.keepcash.srpago.model.entity.CustomerEntity;
 @Repository
 public interface CustomerRepository extends JpaRepository<CustomerEntity, BigInteger> {
 	
-	@Query("SELECT c FROM CustomerEntity c WHERE c.idCustomer = ?1")
-	public Optional<CustomerEntity> geCustomerByID(String IdCustomer);
+	@Query("SELECT c FROM CustomerEntity c WHERE c.idUser = ?1")
+	public Optional<CustomerEntity> geCustomerByIdUser(String idUser);
 	
 }

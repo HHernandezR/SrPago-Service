@@ -15,9 +15,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import app.keepcash.srpago.model.ErrorsResponse;
 import app.keepcash.srpago.model.ServiceInfo;
+import app.keepcash.srpago.model.card.AddCardRequest;
+import app.keepcash.srpago.model.card.AddCardRresponse;
+import app.keepcash.srpago.model.customer.CustomerCreateRequest;
 import app.keepcash.srpago.model.customer.CustomerCreateResponse;
-import app.keepcash.srpago.model.customer.CustomerRequest;
+import app.keepcash.srpago.model.customer.CustomerUpdateRequest;
 import app.keepcash.srpago.model.customer.CustomerUpdateResponse;
+import app.keepcash.srpago.model.payment.PayRequest;
+import app.keepcash.srpago.model.payment.PaymentResponse;
 import app.keepcash.srpago.service.IService;
 import app.keepcash.srpago.service.ISrPagoService;
 
@@ -37,7 +42,7 @@ public class ApplicationController {
 	}
 	
 	@PostMapping(path = "/customer/create")
-	public ResponseEntity<CustomerCreateResponse> createCustomer(@Valid @RequestBody CustomerRequest customer, BindingResult bindingResult) {
+	public ResponseEntity<CustomerCreateResponse> createCustomer(@Valid @RequestBody CustomerCreateRequest customer, BindingResult bindingResult) {
 		ResponseEntity<CustomerCreateResponse> responseEntity = null;
 		if (bindingResult.hasErrors()) {
 			ErrorsResponse errorsResponse = this.service.getRequestErrors(bindingResult);
@@ -48,21 +53,45 @@ public class ApplicationController {
 		return responseEntity;
 	}
 	
-	@PutMapping(path = "/customer/update/{idCustomer}")
-	public ResponseEntity<CustomerUpdateResponse> updateCustomer(@Valid @PathVariable String idCustomer, @RequestBody CustomerRequest customer, BindingResult bindingResult) {
+	@PutMapping(path = "/customer/update/{idUser}")
+	public ResponseEntity<CustomerUpdateResponse> updateCustomer(@PathVariable String idUser,@Valid @RequestBody CustomerUpdateRequest customer, BindingResult bindingResult) {
 		ResponseEntity<CustomerUpdateResponse> responseEntity = null;
 		if (bindingResult.hasErrors()) {
 			ErrorsResponse errorsResponse = this.service.getRequestErrors(bindingResult);
 			responseEntity = this.service.validateErrors(errorsResponse);
 		} else {
-			responseEntity = this.srPagoService.updateCustomer(idCustomer, customer);
+			responseEntity = this.srPagoService.updateCustomer(idUser, customer);
 		}
 		return responseEntity;
 	}
 	
-	@GetMapping(path = "/customer/{idCustomer}")
-	public ResponseEntity<CustomerUpdateResponse> getCustomerInfo(@PathVariable String idCustomer) {
-		ResponseEntity<CustomerUpdateResponse> 	responseEntity = this.srPagoService.getCustomerInfo(idCustomer);
+	@GetMapping(path = "/customer/{idUser}")
+	public ResponseEntity<CustomerUpdateResponse> getCustomerInfo(@PathVariable String idUser) {
+		ResponseEntity<CustomerUpdateResponse> 	responseEntity = this.srPagoService.getCustomerInfo(idUser);
+		return responseEntity;
+	}
+	
+	@PostMapping(path = "/card/save")
+	public ResponseEntity<AddCardRresponse> saveCard(@Valid @RequestBody AddCardRequest request, BindingResult bindingResult) {
+		ResponseEntity<AddCardRresponse> responseEntity = null;
+		if (bindingResult.hasErrors()) {
+			ErrorsResponse errorsResponse = this.service.getRequestErrors(bindingResult);
+			responseEntity = this.service.validateErrors(errorsResponse);
+		} else {
+			responseEntity = this.srPagoService.saveCard(request);
+		}
+		return responseEntity;
+	}
+	
+	@PostMapping(path = "/payment")
+	public ResponseEntity<PaymentResponse> payment(@Valid @RequestBody PayRequest request, BindingResult bindingResult) {
+		ResponseEntity<PaymentResponse> responseEntity = null;
+		if (bindingResult.hasErrors()) {
+			ErrorsResponse errorsResponse = this.service.getRequestErrors(bindingResult);
+			responseEntity = this.service.validateErrors(errorsResponse);
+		} else {
+			responseEntity = this.srPagoService.doPayment(request);
+		}
 		return responseEntity;
 	}
 

@@ -1,13 +1,15 @@
-package app.keepcash.srpago.model.card;
+package app.keepcash.srpago.model.vault;
 
 import java.io.Serializable;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-public class AddCardRequest implements Serializable {
+import app.keepcash.srpago.model.card.CardTypeEnum;
 
-	private static final long serialVersionUID = -3434707315820733027L;
+public class SaveCardRequest implements Serializable {
+
+	private static final long serialVersionUID = -5483256913399184181L;
 
 	@NotNull(message = "El campo idUser es requerido")
 	@Size(min = 1, message = "El campo idUser es requerido")
@@ -28,8 +30,6 @@ public class AddCardRequest implements Serializable {
 	@NotNull(message = "El campo type es requerido")
 	private CardTypeEnum type;
 
-	@NotNull(message = "El campo tokenProcessor es requerido")
-	@Size(min = 1, message = "El campo tokenProcessor es requerido")
 	private String tokenProcessor;
 
 	@NotNull(message = "El campo name es requerido")
@@ -86,7 +86,7 @@ public class AddCardRequest implements Serializable {
 	@Size(min = 1, message = "El campo alcaldia es requerido")
 	private String alcaldia;
 
-	public AddCardRequest() {
+	public SaveCardRequest() {
 		super();
 	}
 
@@ -252,7 +252,7 @@ public class AddCardRequest implements Serializable {
 
 	@Override
 	public String toString() {
-		return "AddCardRequest [idUser=" + idUser + ", pan=" + pan + ", expiredDateMonth=" + expiredDateMonth
+		return "SaveCardRequest [idUser=" + idUser + ", pan=" + pan + ", expiredDateMonth=" + expiredDateMonth
 				+ ", expiredDateYear=" + expiredDateYear + ", type=" + type + ", tokenProcessor=" + tokenProcessor
 				+ ", name=" + name + ", alias=" + alias + ", cutOffDay=" + cutOffDay + ", latitud=" + latitud
 				+ ", longitud=" + longitud + ", pais=" + pais + ", estado=" + estado + ", ciudad=" + ciudad

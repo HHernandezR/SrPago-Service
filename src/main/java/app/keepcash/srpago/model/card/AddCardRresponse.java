@@ -8,7 +8,7 @@ public class AddCardRresponse implements Serializable {
 	private static final long serialVersionUID = 293085845392213446L;
 
 	private Boolean success;
-	private AddCardResponseResult result;
+	private SaveCardResponse result;
 	private List<String> errors;
 
 	public AddCardRresponse() {
@@ -23,11 +23,11 @@ public class AddCardRresponse implements Serializable {
 		this.success = success;
 	}
 
-	public AddCardResponseResult getResult() {
+	public SaveCardResponse getResult() {
 		return result;
 	}
 
-	public void setResult(AddCardResponseResult result) {
+	public void setResult(SaveCardResponse result) {
 		this.result = result;
 	}
 
@@ -36,13 +36,6 @@ public class AddCardRresponse implements Serializable {
 	}
 
 	public void setErrors(List<String> errors) {
-		this.errors = errors;
-	}
-
-	public AddCardRresponse(Boolean success, AddCardResponseResult result, List<String> errors) {
-		super();
-		this.success = success;
-		this.result = result;
 		this.errors = errors;
 	}
 
